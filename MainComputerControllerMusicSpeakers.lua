@@ -1,7 +1,9 @@
--- Fichier : control_master
+-- Fichier : control_master (V2)
+-- Rôle : Envoie des commandes audio aux ordinateurs clients via le modem sans fil.
 
 -- 1. Configuration des côtés (uniquement le Modem)
-local modem_side = "right" -- Assurez-vous que c'est le côté où votre modem est installé.
+-- Ajustez "right" ou "left" selon le côté où votre modem est installé sur l'ordinateur MAÎTRE
+local modem_side = "right" 
 
 -- 2. Initialisation des périphériques
 print("Initialisation du Maître Contrôleur...")
@@ -17,13 +19,14 @@ print("---------------------------------------")
 print("Maître PRÊT. Envoi de commandes en cours.")
 print("---------------------------------------")
 
--- 3. Définir la liste des IDs Clients
--- TRÈS IMPORTANT : REMPLACEZ CES NUMÉROS AVEC LES VRAIS IDs AFFICHÉS PAR VOS CLIENTS
+-- 3. Définir la liste des IDs Clients (TRÈS IMPORTANT !)
+-- REMPLACEZ 101, 102, 103 AVEC LES VRAIS IDs AFFICHÉS PAR VOS CLIENTS !
 local client_ids = {
-    101, -- Exemple ID pour le haut-parleur 1
-    102, -- Exemple ID pour le haut-parleur 2
-    103  -- Exemple ID pour le haut-parleur 3
+    101, -- ID du Client Haut-Parleur 1
+    102, -- ID du Client Haut-Parleur 2
+    103  -- ID du Client Haut-Parleur 3
 }
+print("Cibles : " .. #client_ids .. " clients à contacter.")
 
 -- 4. Fonction pour diffuser le son à tous les clients
 function broadcast_sound(sound_command)
@@ -39,13 +42,14 @@ end
 
 -- 5. Séquence de démonstration
 print("Début de la séquence...")
+os.sleep(1)
 
--- Exemple 1: Un 'pling'
+-- Exemple 1: Un 'pling' (son de cloche)
 broadcast_sound("minecraft:block.note_block.pling")
 os.sleep(1) -- Attendre 1 seconde
 
--- Exemple 2: Son d'une flèche
-broadcast_sound("minecraft:entity.arrow.shoot")
+-- Exemple 2: Son d'une explosion douce
+broadcast_sound("minecraft:entity.generic.explode")
 os.sleep(1)
 
 -- Exemple 3: Son de harpe
