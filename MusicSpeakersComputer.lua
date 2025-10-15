@@ -1,4 +1,4 @@
--- Fichier : speaker_client
+-- Fichier : speaker_client (CORRIGÉ)
 
 -- 1. Configuration des côtés (à ajuster si nécessaire !)
 -- MODEM : Choisissez "right" (droit) ou "left" (gauche) selon votre installation
@@ -27,7 +27,7 @@ local speaker = peripheral.wrap(speaker_side)
 
 -- 3. Initialiser Rednet
 rednet.open(modem_side)
-local my_id = rednet.hostID()
+local my_id = os.getComputerID() -- <<< LIGNE CORRIGÉE : Utilisation de os.getComputerID()
 print("---------------------------------------")
 print("Client PRÊT. ID Rednet : " .. my_id)
 print("NOTEZ CET ID pour le programme Maître!")
@@ -45,7 +45,6 @@ while true do
         local sound_name = message
         
         -- Lecture du son (utiliser playSound qui est plus adapté pour des événements courts)
-        -- Si vous voulez jouer des fichiers .wav (Musique), utilisez playAudio()
         local success, error_message = speaker.playSound(sound_name)
         
         if success then
